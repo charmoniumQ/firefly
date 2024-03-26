@@ -172,7 +172,7 @@ in
         description = "Database host address.";
       };
       port = mkOption {
-        type = types.port;
+        type = types.nullOr types.port;
         default = 3306;
         description = "Database host port.";
       };
