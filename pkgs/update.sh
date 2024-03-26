@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 # See http://mywiki.wooledge.org/BashFAQ/028
 if [[ $BASH_SOURCE = */* ]]; then
     pushd -- "${BASH_SOURCE%/*}/" || exit

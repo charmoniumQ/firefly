@@ -421,7 +421,7 @@ in
           fi
 
           # migrate db
-          ${pkgs.php83}/bin/php artisan migrate --force
+          ${pkgs.php83}/bin/php artisan migrate --force -vvv
         '';
     };
 

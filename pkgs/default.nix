@@ -19,6 +19,7 @@ let
       ln -s ${dataDir}/storage $out/storage
       ln -fs ${dataDir}/.env $out/.env
     '';
+    APP_KEY = "base64:J63qRTDLub5NuZvP+kb8YIorGS6qFYHKVo6u7179stY=";
   });
 in
 package.override rec {
