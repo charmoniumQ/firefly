@@ -17,7 +17,8 @@ fi
 # Determine the latest version.
 GITHUB_OWNER=firefly-iii
 GITHUB_REPO=firefly-iii
-latest_version=$(curl -s --show-error "https://api.github.com/repos/$GITHUB_OWNER/$GITHUB_REPO/releases/latest" | jq -r '.tag_name')
+#latest_version=$(curl -s --show-error "https://api.github.com/repos/$GITHUB_OWNER/$GITHUB_REPO/releases/latest" | jq -r '.tag_name')
+latest_version=v6.1.11
 
 # Determine if we are already at the latest version.
 current_version=$(nix eval -f ../flake.nix --raw inputs.firefly-iii-src.url | rg -o 'v?\d+\.\d+\.\d+')
