@@ -176,6 +176,11 @@ in
         default = 3306;
         description = "Database host port.";
       };
+      socket = mkOption {
+        type = types.nullOr types.path;
+        default = null;
+        description = "Database UNIX socket (set port to null).";
+      };
       name = mkOption {
         type = types.str;
         default = "firefly";
@@ -281,6 +286,14 @@ in
         assertion = db.createLocally -> db.type == "mysql";
         message = "services.firefly-iii.database.type must be set to mysql if services.firefly-iii.database.createLocally is set true.";
       }
+      {
+        assertion = db.socket != null -> db.port == null;
+        message = "If socket is set, port should be null";
+      }
+      {
+        assertion = db.port != null -> db.socket == null;
+        message = "If port is set, socket should be null";
+      }
     ];
 
     # PHP
@@ -347,6 +360,7 @@ in
       DB_PORT = db.port;
       DB_DATABASE = db.name;
       DB_USERNAME = db.user;
+      DB_SOCKET = db.socket;
       DB_PASSWORD._secret = db.passwordFile;
 
       MAIL_MAILER = mail.driver;
