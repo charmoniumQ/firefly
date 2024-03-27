@@ -180,6 +180,8 @@ let
         EOF
         fi
 
+        echo "APP_KEY=SomeRandomStringOf32CharsExactly" > .env
+
         # Reconstruct the installed.json file from the lock file
         mkdir -p vendor/composer
         ${php}/bin/php ${reconstructInstalled} composer.lock > vendor/composer/installed.json
