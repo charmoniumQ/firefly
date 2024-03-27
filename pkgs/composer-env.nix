@@ -180,8 +180,6 @@ let
         EOF
         fi
 
-        echo "APP_KEY=SomeRandomStringOf32CharsExactly" > .env
-
         # Reconstruct the installed.json file from the lock file
         mkdir -p vendor/composer
         ${php}/bin/php ${reconstructInstalled} composer.lock > vendor/composer/installed.json
@@ -191,6 +189,8 @@ let
         ${bundleDependencies packages}
         ${lib.optionalString (!noDev) (bundleDependencies devPackages)}
         cd ..
+
+        echo "APP_KEY=SomeRandomStringOf32CharsExactly" > .env
 
         # Reconstruct autoload scripts
         # We use the optimize feature because Nix packages cannot change after they have been built
